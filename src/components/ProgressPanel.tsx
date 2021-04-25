@@ -3,6 +3,7 @@ import {
   fetchStartupProgress,
   StartupProgress,
 } from "../services/ProgressService";
+import ProgressStage from "./ProgressStage";
 
 interface PanelStatus {
   loading?: boolean;
@@ -26,7 +27,7 @@ const ProgressPanel = () => {
   }, []);
 
   return (
-    <div>
+    <div className="w-80 h-96 p-10 bg-white shadow-lg rounded">
       {status.loading ? <p>Loading...</p> : null}
       {status.error ? (
         <p>Whoops, something went wrong on our servers...</p>
@@ -35,8 +36,12 @@ const ProgressPanel = () => {
 
       {status.edit ? (
         <>
-          <h1>{progress.name}</h1>
-          <div>{JSON.stringify(progress.stages, null, 2)}</div>
+          <h1 className="font-bold text-xl mb-5">{progress.name}</h1>
+          <ol>
+            {progress.stages.map((stage, index) => (
+              <ProgressStage index={index} stage={stage} key={index} />
+            ))}
+          </ol>
         </>
       ) : null}
     </div>
