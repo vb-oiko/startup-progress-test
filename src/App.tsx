@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import ProgressPanel from "./components/ProgressPanel";
 import RandomTextCard from "./components/RandomTextCard";
+import LocalStorageProgressService from "./services/ProgressService";
 import { getUselessFact } from "./services/UselessFactService";
 
 function App() {
@@ -13,11 +14,15 @@ function App() {
         <RandomTextCard
           getRandomText={getUselessFact}
           onOk={() => {
+            LocalStorageProgressService.initStartupProgress();
             setCompleted(false);
           }}
         />
       ) : (
-        <ProgressPanel onComplete={() => setCompleted(true)} />
+        <ProgressPanel
+          onComplete={() => setCompleted(true)}
+          progressService={LocalStorageProgressService}
+        />
       )}
     </div>
   );

@@ -1,19 +1,9 @@
-export interface StartupStep {
-  name: string;
-  completed: boolean;
-}
+import {
+  StartupProgress,
+  StartupProgressService,
+} from "../components/ProgressPanel";
 
-export interface StartupStage {
-  name: string;
-  steps: StartupStep[];
-}
-
-export interface StartupProgress {
-  name: string;
-  stages: StartupStage[];
-}
-
-const STARTUP_PROGRESS: StartupProgress = {
+const DEFAULT_STARTUP_PROGRESS: StartupProgress = {
   name: "My startup progress",
   stages: [
     {
@@ -42,9 +32,29 @@ const STARTUP_PROGRESS: StartupProgress = {
   ],
 };
 
-export const fetchStartupProgress = async (): Promise<StartupProgress> =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(STARTUP_PROGRESS);
-    }, 500);
-  });
+const STARTUP_PROFRESS_KEY = "startupProgress";
+
+const LocalStorageProgressService: StartupProgressService = {
+  async initStartupProgress() {
+    localStorage.setItem(
+      STARTUP_PROFRESS_KEY,
+      JSON.stringify(DEFAULT_STARTUP_PROGRESS)
+    );
+    return DEFAULT_STARTUP_PROGRESS;
+  },
+
+  async loadStartupProgress() {
+    const item = localStorage.getItem(STARTUP_PROFRESS_KEY);
+    if (item) {
+      return JSON.parse(item) as StartupProgress;
+    }
+
+    return LocalStorageProgressService.initStartupProgress();
+  },
+
+  async saveStartupProgress(progress: StartupProgress) {
+    localStorage.setItem(STARTUP_PROFRESS_KEY, JSON.stringify(progress));
+  },
+};
+
+export default LocalStorageProgressService;

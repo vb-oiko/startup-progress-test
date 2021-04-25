@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from "react";
-import {
-  fetchStartupProgress,
-  StartupProgress,
-  StartupStage,
-} from "../services/ProgressService";
 import ProgressStage from "./ProgressStage";
+
+export interface StartupStep {
+  name: string;
+  completed: boolean;
+}
+
+export interface StartupStage {
+  name: string;
+  steps: StartupStep[];
+}
+
+export interface StartupProgress {
+  name: string;
+  stages: StartupStage[];
+}
+
+export interface StartupProgressService {
+  initStartupProgress: () => Promise<StartupProgress>;
+  loadStartupProgress: () => Promise<StartupProgress>;
+  saveStartupProgress: (progress: StartupProgress) => Promise<void>;
+}
 
 interface PanelStatus {
   loading?: boolean;
@@ -13,25 +29,34 @@ interface PanelStatus {
   finish?: boolean;
 }
 
-const ProgressPanel = ({ onComplete }: { onComplete: () => void }) => {
+const ProgressPanel = ({
+  progressService,
+  onComplete,
+}: {
+  progressService: StartupProgressService;
+  onComplete: () => void;
+}) => {
   const [progress, setStartupProgress] = useState({} as StartupProgress);
   const [status, setStatus] = useState({} as PanelStatus);
   const [activeStepIndex, setActiveStepIndex] = useState(null as null | number);
 
   useEffect(() => {
     setStatus({ loading: true });
-    fetchStartupProgress()
+    progressService
+      .loadStartupProgress()
       .then((progress) => {
         setStartupProgress(progress);
         setStatus({ edit: true });
       })
       .catch((_err) => setStatus({ error: true }));
-  }, []);
+  }, [progressService]);
 
   const onStageChange = (index: number, stage: StartupStage) => {
     const { name, stages } = progress;
     stages[index] = stage;
-    setStartupProgress({ name, stages });
+    const newProgress = { name, stages };
+    setStartupProgress(newProgress);
+    progressService.saveStartupProgress(newProgress);
   };
 
   useEffect(() => {

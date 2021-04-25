@@ -1,5 +1,5 @@
 import React from "react";
-import { StartupStage } from "../services/ProgressService";
+import { StartupStage } from "./ProgressPanel";
 import ProgressStep from "./ProgressStep";
 import TickIcon from "./TickIcon";
 

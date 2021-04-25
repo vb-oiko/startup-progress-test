@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { StartupStep } from "../services/ProgressService";
 import { stringToKebab } from "../utils";
 import cx from "classnames";
+import { StartupStep } from "./ProgressPanel";
 
 const ProgressStep = ({
   index,
