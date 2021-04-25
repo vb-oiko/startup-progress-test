@@ -6,10 +6,14 @@ import TickIcon from "./TickIcon";
 const ProgressPanel = ({
   index,
   stage,
+  disabled,
+  completed,
   onChange,
 }: {
   index: number;
   stage: StartupStage;
+  disabled: boolean;
+  completed: boolean;
   onChange: (index: number, stage: StartupStage) => void;
 }) => {
   const onStepChange = (stepIndex: number, value: boolean) => {
@@ -28,12 +32,17 @@ const ProgressPanel = ({
         <span className="text-xl font-bold ml-3 mr-auto select-none">
           {stage.name}
         </span>
-        <TickIcon />
+        {completed ? <TickIcon /> : null}
       </div>
       <ul className="space-y-2">
         {stage.steps.map((step, index) => (
           <li key={`step-${index}`}>
-            <ProgressStep index={index} step={step} onChange={onStepChange} />
+            <ProgressStep
+              index={index}
+              step={step}
+              onChange={onStepChange}
+              disabled={disabled}
+            />
           </li>
         ))}
       </ul>

@@ -69,6 +69,11 @@ const ProgressPanel = ({ onComplete }: { onComplete: () => void }) => {
                 index={index}
                 stage={stage}
                 key={`stage-${index}`}
+                disabled={index !== activeStepIndex}
+                completed={
+                  (activeStepIndex !== null && index < activeStepIndex) ||
+                  activeStepIndex === -1
+                }
                 onChange={onStageChange}
               />
             ))}
