@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ProgressPanel from "./components/ProgressPanel";
+import RandomTextCard from "./components/RandomTextCard";
+import { getUselessFact } from "./services/UselessFactService";
 
 function App() {
+  const [completed, setCompleted] = useState(false);
+
   return (
     <div className="grid place-items-center w-screen h-screen bg-gradient-to-r from-gray-200 to=gray-300">
-      <ProgressPanel
-        onComplete={() => {
-          console.warn("completed");
-        }}
-      />
+      {completed ? (
+        <RandomTextCard getRandomText={getUselessFact} />
+      ) : (
+        <ProgressPanel onComplete={() => setCompleted(true)} />
+      )}
     </div>
   );
 }
