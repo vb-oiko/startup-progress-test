@@ -5,9 +5,11 @@ import { stringToKebab } from "../utils";
 const ProgressStep = ({
   index,
   step,
+  onChange,
 }: {
   index: number;
   step: StartupStep;
+  onChange: (index: number, value: boolean) => void;
 }) => {
   const id = `checkbox-${stringToKebab(step.name)}`;
 
@@ -23,12 +25,17 @@ const ProgressStep = ({
           checked={checked}
           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded cursor-pointer"
           onChange={(ev) => {
-            setChecked(ev.target.checked);
+            const { checked } = ev.target;
+            setChecked(checked);
+            onChange(index, checked);
           }}
         />
       </div>
       <div className="ml-3 text-sm">
-        <label htmlFor={id} className="font-medium text-gray-800 select-none cursor-pointer">
+        <label
+          htmlFor={id}
+          className="font-medium text-gray-800 select-none cursor-pointer"
+        >
           {step.name}
         </label>
       </div>

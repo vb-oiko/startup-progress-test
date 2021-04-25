@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   fetchStartupProgress,
   StartupProgress,
+  StartupStage,
 } from "../services/ProgressService";
 import ProgressStage from "./ProgressStage";
 
@@ -26,6 +27,13 @@ const ProgressPanel = () => {
       .catch((_err) => setStatus({ error: true }));
   }, []);
 
+  const onStageChange = (index: number, stage: StartupStage) => {
+    const { name, stages } = progress;
+    stages[index] = stage;
+    setStartupProgress({ name, stages });
+    console.warn(progress);
+  };
+
   return (
     <div className="w-80 p-10 bg-white shadow-lg rounded">
       {status.loading ? <p>Loading...</p> : null}
@@ -41,7 +49,12 @@ const ProgressPanel = () => {
           </h1>
           <ol>
             {progress.stages.map((stage, index) => (
-              <ProgressStage index={index} stage={stage} key={index} />
+              <ProgressStage
+                index={index}
+                stage={stage}
+                key={`stage-${index}`}
+                onChange={onStageChange}
+              />
             ))}
           </ol>
         </>
