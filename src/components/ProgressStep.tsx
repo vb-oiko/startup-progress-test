@@ -21,14 +21,14 @@ const ProgressStep = ({
           name={id}
           type="checkbox"
           checked={checked}
-          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-          onChange={() => {
-            setChecked(!checked);
+          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded cursor-pointer"
+          onChange={(ev) => {
+            setChecked(ev.target.checked);
           }}
         />
       </div>
       <div className="ml-3 text-sm">
-        <label htmlFor={id} className="font-medium text-gray-700">
+        <label htmlFor={id} className="font-medium text-gray-800 select-none cursor-pointer">
           {step.name}
         </label>
       </div>

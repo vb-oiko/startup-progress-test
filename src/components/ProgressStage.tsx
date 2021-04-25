@@ -13,10 +13,10 @@ const ProgressPanel = ({
   return (
     <li>
       <div className="flex mt-5 mb-4">
-        <span className="text-white text-sm font-semibold bg-gray-900 w-7 h-7 rounded-full inline-flex items-center justify-center">
+        <span className="text-white text-sm font-semibold bg-gray-900 w-7 h-7 rounded-full inline-flex items-center justify-center select-none">
           {index + 1}
         </span>
-        <span className="text-xl font-bold ml-3 mr-auto">{stage.name}</span>
+        <span className="text-xl font-bold ml-3 mr-auto select-none">{stage.name}</span>
         <TickIcon />
       </div>
       <ul className="space-y-2">

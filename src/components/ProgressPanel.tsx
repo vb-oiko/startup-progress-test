@@ -36,7 +36,9 @@ const ProgressPanel = () => {
 
       {status.edit ? (
         <>
-          <h1 className="font-bold text-xl mb-5">{progress.name}</h1>
+          <h1 className="font-bold text-xl mb-5 select-none">
+            {progress.name}
+          </h1>
           <ol>
             {progress.stages.map((stage, index) => (
               <ProgressStage index={index} stage={stage} key={index} />
