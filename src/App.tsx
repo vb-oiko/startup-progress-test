@@ -10,7 +10,12 @@ function App() {
   return (
     <div className="grid place-items-center w-screen h-screen bg-gradient-to-r from-gray-200 to=gray-300">
       {completed ? (
-        <RandomTextCard getRandomText={getUselessFact} />
+        <RandomTextCard
+          getRandomText={getUselessFact}
+          onOk={() => {
+            setCompleted(false);
+          }}
+        />
       ) : (
         <ProgressPanel onComplete={() => setCompleted(true)} />
       )}
