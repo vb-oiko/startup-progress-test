@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/startup-progress-test/static/css/main.329072ba.chunk.css",
+    "main.js": "/startup-progress-test/static/js/main.1a630df1.chunk.js",
+    "main.js.map": "/startup-progress-test/static/js/main.1a630df1.chunk.js.map",
+    "runtime-main.js": "/startup-progress-test/static/js/runtime-main.4f453b4a.js",
+    "runtime-main.js.map": "/startup-progress-test/static/js/runtime-main.4f453b4a.js.map",
+    "static/js/2.9cf906b2.chunk.js": "/startup-progress-test/static/js/2.9cf906b2.chunk.js",
+    "static/js/2.9cf906b2.chunk.js.map": "/startup-progress-test/static/js/2.9cf906b2.chunk.js.map",
+    "static/js/3.ba6ff3f8.chunk.js": "/startup-progress-test/static/js/3.ba6ff3f8.chunk.js",
+    "static/js/3.ba6ff3f8.chunk.js.map": "/startup-progress-test/static/js/3.ba6ff3f8.chunk.js.map",
+    "index.html": "/startup-progress-test/index.html",
+    "static/css/main.329072ba.chunk.css.map": "/startup-progress-test/static/css/main.329072ba.chunk.css.map",
+    "static/js/2.9cf906b2.chunk.js.LICENSE.txt": "/startup-progress-test/static/js/2.9cf906b2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4f453b4a.js",
+    "static/js/2.9cf906b2.chunk.js",
+    "static/css/main.329072ba.chunk.css",
+    "static/js/main.1a630df1.chunk.js"
+  ]
+}
