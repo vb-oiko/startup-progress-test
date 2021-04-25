@@ -12,9 +12,9 @@ const ProgressPanel = ({
   stage: StartupStage;
   onChange: (index: number, stage: StartupStage) => void;
 }) => {
-  const onStepChange = (index: number, value: boolean) => {
+  const onStepChange = (stepIndex: number, value: boolean) => {
     const { name, steps } = stage;
-    steps[index].completed = value;
+    steps[stepIndex].completed = value;
     const newStage = { name, steps };
     onChange(index, newStage);
   };

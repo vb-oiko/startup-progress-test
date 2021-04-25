@@ -13,9 +13,10 @@ interface PanelStatus {
   finish?: boolean;
 }
 
-const ProgressPanel = () => {
+const ProgressPanel = ({ onComplete }: { onComplete: () => void }) => {
   const [progress, setStartupProgress] = useState({} as StartupProgress);
   const [status, setStatus] = useState({} as PanelStatus);
+  const [activeStepIndex, setActiveStepIndex] = useState(null as null | number);
 
   useEffect(() => {
     setStatus({ loading: true });
@@ -31,8 +32,23 @@ const ProgressPanel = () => {
     const { name, stages } = progress;
     stages[index] = stage;
     setStartupProgress({ name, stages });
-    console.warn(progress);
   };
+
+  useEffect(() => {
+    const firstUncompletedStageIndex = progress.stages?.findIndex((stage) =>
+      stage.steps.some((step) => !step.completed)
+    );
+
+    if (firstUncompletedStageIndex === undefined) {
+      return;
+    }
+
+    if (firstUncompletedStageIndex === -1) {
+      onComplete();
+    }
+
+    setActiveStepIndex(firstUncompletedStageIndex);
+  }, [progress, onComplete]);
 
   return (
     <div className="w-80 p-10 bg-white shadow-lg rounded">
