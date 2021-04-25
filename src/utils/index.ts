@@ -1,0 +1,1 @@
+export const stringToKebab =( str:string) => str.replace(/\W+/g, '-').toLowerCase();
