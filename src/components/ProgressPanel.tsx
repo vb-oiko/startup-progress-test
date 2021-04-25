@@ -76,7 +76,7 @@ const ProgressPanel = ({
   }, [progress, onComplete]);
 
   return (
-    <div className="w-80 p-10 bg-white shadow-lg rounded">
+    <div className="w-full sm:w-80 p-10 bg-white sm:shadow-lg sm:rounded">
       {status.loading ? <p>Loading...</p> : null}
       {status.error ? (
         <p>Whoops, something went wrong on our servers...</p>

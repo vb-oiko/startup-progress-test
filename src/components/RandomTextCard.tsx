@@ -18,7 +18,7 @@ const RandomTextCard = ({
   }, [getRandomText]);
 
   return (
-    <div className="w-80 p-10 bg-white shadow-lg rounded">
+    <div className="w-full sm:w-80 p-10 bg-white sm:shadow-lg sm:rounded">
       <p className="min-h-16">{text}</p>
       <button
         type="button"

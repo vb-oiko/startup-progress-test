@@ -43,8 +43,8 @@ const ProgressStep = ({
       <div className="ml-3 text-sm">
         <label
           htmlFor={id}
-          className={cx("font-medium text-gray-800 select-none ", {
-            "text-gray-600": disabled,
+          className={cx("font-medium select-none ", {
+            "text-gray-500": disabled,
             "text-gray-800 cursor-pointer": !disabled,
           })}
         >

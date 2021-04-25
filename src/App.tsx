@@ -9,7 +9,7 @@ function App() {
   const [completed, setCompleted] = useState(false);
 
   return (
-    <div className="grid place-items-center w-screen h-screen bg-gradient-to-r from-gray-200 to=gray-300">
+    <div className="sm:grid sm:place-items-center w-screen h-screen sm:bg-gradient-to-r from-gray-200 to=gray-300">
       {completed ? (
         <RandomTextCard
           getRandomText={getUselessFact}
